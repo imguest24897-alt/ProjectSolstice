@@ -149,7 +149,7 @@ static void cmd_oem_clearscreen(const char *arg, void *data, unsigned sz) {
 	(void)data; (void)sz;
 	fbcon_clear();
 	fastboot_okay("");
-}*/
+}
 
 static void cmd_oem_blcmdline(const char *arg, void *data, unsigned sz)
 {
@@ -158,6 +158,7 @@ static void cmd_oem_blcmdline(const char *arg, void *data, unsigned sz)
 	fastboot_info(lk2nd_dev.cmdline);
 	fastboot_okay("");
 }
+*/
 
 static void lk2nd_fastboot_register_fetch(void)
 {
@@ -170,7 +171,7 @@ static void lk2nd_fastboot_register_fetch(void)
 	fastboot_register("flashing unlock", cmd_oem_unlock);
 	fastboot_register("flashing lock", cmd_oem_lock);
 	fastboot_register("oem carrier", cmd_oem_carrier);
-	fastboot_register("oem clearscreen", cmd_oem_clearscreen);*/
-	fastboot_register("oem blcmdline", cmd_oem_blcmdline);
+	fastboot_register("oem clearscreen", cmd_oem_clearscreen);
+	fastboot_register("oem blcmdline", cmd_oem_blcmdline);*/
 }
 FASTBOOT_INIT(lk2nd_fastboot_register_fetch);

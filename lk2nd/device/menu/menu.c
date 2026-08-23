@@ -189,7 +189,7 @@ static struct {
 	{ "  REBOOT  ", WHITE,  opt_reboot     },
 	{ " CONTINUE ", WHITE,  opt_continue   },
 	{ " RECOVERY ", ORANGE, opt_recovery   },
-	{ " DOWNLOAD ", ORANGE, opt_download   },
+	{ " DOWNLOAD ", RED,    opt_download   },
 	{ " FASTBOOT ", RED,    opt_bootloader },
 	{ "    EDL   ", RED,    opt_edl        },
 	{ " POWEROFF ", RED,    opt_shutdown   },

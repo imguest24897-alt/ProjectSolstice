@@ -186,10 +186,10 @@ static struct {
 	unsigned color;
 	void (*action)(void);
 } menu_options[] = {
-	{ "  REBOOT  ", WHITE,  opt_reboot     },
-	{ " CONTINUE ", WHITE,  opt_continue   },
-	{ " RECOVERY ", ORANGE, opt_recovery   },
-	{ " DOWNLOAD ", RED,    opt_download   },
+	{ "  REBOOT  ", GREEN,  opt_reboot     },
+	{ " CONTINUE ", GREEN,  opt_continue   },
+	{ " RECOVERY ", WHITE,  opt_recovery   },
+	{ " DOWNLOAD ", ORANGE, opt_download   },
 	{ " FASTBOOT ", RED,    opt_bootloader },
 	{ "    EDL   ", RED,    opt_edl        },
 	{ " POWEROFF ", RED,    opt_shutdown   },
@@ -265,22 +265,26 @@ void display_fastboot_menu(void)
 	incr = FONT_HEIGHT * scale_factor;
 	y = fb->height - 8 * incr;
 
-	fbcon_puts_ln(WHITE, y, incr, true, "About this device");
+	fbcon_puts_ln(SILVER, y, incr, true, "About this device");
 
 
 	if (lk2nd_dev.panel.name)
-		fbcon_printf_ln(SILVER, y, incr, false, " Panel:            %s", lk2nd_dev.panel.name);
+		fbcon_printf_ln(WHITE, y, incr, false, " Panel:            %s", lk2nd_dev.panel.name);
+	else
+		fbcon_printf_ln(YELLOW, y, incr, false, " Panel:            ???");
 	if (lk2nd_dev.battery) {
-		fbcon_printf_ln(SILVER, y, incr, false, " Battery:          %s", lk2nd_dev.battery);
+		fbcon_printf_ln(WHITE, y, incr, false, " Battery:          %s", lk2nd_dev.battery);
 	} else {
-		fbcon_printf_ln(SILVER, y, incr, false, " Battery:          I can't find a battery!");
+		fbcon_printf_ln(YELLOW, y, incr, false, " Battery:          ???");
 	}
 #if WITH_LK2ND_DEVICE_2ND
 	if (lk2nd_dev.bootloader)
-		fbcon_printf_ln(SILVER, y, incr, false, " Bootloader:       %s", lk2nd_dev.bootloader);
+		fbcon_printf_ln(WHITE, y, incr, false, " Bootloader:       %s", lk2nd_dev.bootloader);
+	else
+		fbcon_printf_ln(YELLOW, y, incr, false, " Bootloader:       ???");
 #endif
 
-	fbcon_printf_ln(armv8 ? GREEN : YELLOW, y, incr, false, " ARM64 supported:  %s",
+	fbcon_printf_ln(armv8 ? GREEN : RED, y, incr, false, " ARM64 supported:  %s",
 			armv8 ? "yes" : "no");
 
 	/*
@@ -362,8 +366,8 @@ void display_default_image_on_screen(void)
         	(fbcon_get_height() - -22 * scale2) / 2);
 	fbcon_flush();
 
-	fbcon_puts_ln(WHITE, y, incr, true, "Powered by");
-	fbcon_puts_ln(SILVER, y, incr, true, "lk2nd");
+	fbcon_puts_ln(SILVER, y, incr, true, "Powered by");
+	fbcon_puts_ln(WHITE, y, incr, true, "lk2nd");
 	//for (int i=0; "Finished doing stuff, trying to boot..."[i]; ++i) fbcon_putc_factor_xy("Finshed doing stuff, trying to boot..."[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
 	fbcon_flush();
 }

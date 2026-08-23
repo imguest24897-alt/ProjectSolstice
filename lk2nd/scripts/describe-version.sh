@@ -29,7 +29,7 @@ get_version_string() {
 	last_tag=$(git tag --sort=-taggerdate --merged | head -n1)
 	if [ -z "$last_tag" ]
 	then
-		echo "$(date +%Y.%m.%d)-alpha-$(git_dirty)"
+		echo "$(date +%Y.%m.%d)-alpha$(git_dirty)"
 		return
 	fi
 

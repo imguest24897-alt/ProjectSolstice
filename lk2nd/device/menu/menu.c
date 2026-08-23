@@ -223,9 +223,9 @@ void display_fastboot_menu(void)
 	 * Draw the static part of the menu
 	 */
 
-	scale_factor += 1;
+	scale_factor += 3;
 	incr = FONT_HEIGHT * scale_factor;
-	fbcon_puts_ln(WHITE, y, incr * 2, true, "Project Solstice");
+	fbcon_puts_ln(WHITE, y, incr * 3, true, "Project Solstice");
 
 	scale_factor = old_scale;
 	incr = FONT_HEIGHT * scale_factor;
@@ -353,7 +353,7 @@ void display_default_image_on_screen(void)
 	//for (int i=0; "ALPHA BUILD!"[i]; ++i) fbcon_putc_factor_xy("ALPHA BUILD!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 0);
 
 	const char *s = "Project Solstice";
-	int scale = 7;
+	int scale = 6;
 	for (int i = 0; s[i]; ++i)
     	fbcon_putc_factor_xy(s[i], FBCON_COMMON_MSG, scale,
         	(fbcon_get_width() - (int)strlen(s) * 6 * scale) / 2 + i * 6 * scale,

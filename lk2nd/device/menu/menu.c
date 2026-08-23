@@ -134,7 +134,7 @@ static uint16_t wait_key(void)
 	} while(0)
 
 static void opt_continue(void)   {
-	for (int i=0; "DEBUG: Continuing boot"[i]; ++i) fbcon_putc_factor_xy("DEBUG: Continuing boot"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
+	//for (int i=0; "DEBUG: Continuing boot"[i]; ++i) fbcon_putc_factor_xy("DEBUG: Continuing boot"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
 	struct fbcon_config *fb = fbcon_display();
 	int y, incr;
 	scale_factor = max(1U, min(fb->width, fb->height) / (FONT_WIDTH * MIN_LINE));
@@ -145,7 +145,7 @@ static void opt_continue(void)   {
 
 	fbcon_clear();
 
-	for (int i=0; "ALPHA BUILD!"[i]; ++i) fbcon_putc_factor_xy("ALPHA BUILD!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 0);
+	//for (int i=0; "ALPHA BUILD!"[i]; ++i) fbcon_putc_factor_xy("ALPHA BUILD!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 0);
 
 	const char *s = "Project Solstice";
 	int scale = 7;
@@ -154,10 +154,17 @@ static void opt_continue(void)   {
         	(fbcon_get_width() - (int)strlen(s) * 6 * scale) / 2 + i * 6 * scale,
         	(fbcon_get_height() - 12 * scale) / 2);
 	fbcon_flush();
+	const char *s2 = "alpha :P";
+	int scale2 = 3;
+	for (int i = 0; s2[i]; ++i)
+    	fbcon_putc_factor_xy(s2[i], FBCON_COMMON_MSG, scale2,
+        	(fbcon_get_width() - (int)strlen(s2) * 6 * scale2) / 2 + i * 6 * scale2,
+        	(fbcon_get_height() - -22 * scale2) / 2);
+	fbcon_flush();
 
 	fbcon_puts_ln(WHITE, y, incr, true, "Powered by");
 	fbcon_puts_ln(SILVER, y, incr, true, "lk2nd");
-	for (int i=0; "DEBUG: Continuing boot"[i]; ++i) fbcon_putc_factor_xy("DEBUG: Continuing boot"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
+	//for (int i=0; "DEBUG: Continuing boot"[i]; ++i) fbcon_putc_factor_xy("DEBUG: Continuing boot"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
 	fbcon_flush();
 	cmd_continue(NULL, NULL, 0);
 }

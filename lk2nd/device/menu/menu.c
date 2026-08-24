@@ -188,7 +188,7 @@ static struct {
 } menu_options[] = {
 	{ "  REBOOT  ", GREEN,  opt_reboot     },
 	{ " CONTINUE ", GREEN,  opt_continue   },
-	{ " RECOVERY ", WHITE,  opt_recovery   },
+	{ " RECOVERY ", ORANGE,  opt_recovery   },
 	{ " DOWNLOAD ", ORANGE, opt_download   },
 	{ " FASTBOOT ", RED,    opt_bootloader },
 	{ "    EDL   ", RED,    opt_edl        },

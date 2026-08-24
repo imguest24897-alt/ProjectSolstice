@@ -35,6 +35,14 @@
 			i2c-sda-gpios = <&tlmm 105 I2C_GPIO_FLAGS>;
 			i2c-scl-gpios = <&tlmm 106 I2C_GPIO_FLAGS>;
 		};
+
+		gpio-keys {
+			compatible = "gpio-keys";
+			home {
+            	lk2nd,code = <KEY_HOME>;
+            	gpios = <&tlmm 109 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        	};
+		};
 	};
 
 	/* rev 4 */

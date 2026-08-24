@@ -60,6 +60,8 @@ bool lk2nd_keys_pressed(uint32_t keycode)
 			return target_volume_up();
 		case KEY_POWER:
 			return target_powerkey();
+		case KEY_HOME:
+			return target_powerkey();
 		default:
 			return false;
 	}

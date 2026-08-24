@@ -254,7 +254,7 @@ void display_fastboot_menu(void)
 				(lk2nd_dev.menu_keys.navigate ? lk2nd_dev.menu_keys.navigate : "volume buttons"));
 		fbcon_printf_ln(SILVER, y, incr, true, "navigate,");
 		fbcon_printf_ln(SILVER, y, incr, true, "or %s to select.",
-				(lk2nd_dev.menu_keys.select ? lk2nd_dev.menu_keys.select : "the power key"));
+				(lk2nd_dev.menu_keys.select ? lk2nd_dev.menu_keys.select : "the power/home key"));
 	}
 
 	/*
@@ -310,6 +310,15 @@ void display_fastboot_menu(void)
 
 		switch (wait_key()) {
 		case KEY_POWER:
+			y = y_menu + incr * sel;
+			fbcon_printf_ln(
+				menu_options[sel].color,
+				y, incr, true, "<< %s >>",
+				menu_options[sel].name
+			);
+			menu_options[sel].action();
+			break;
+		case KEY_HOME:
 			y = y_menu + incr * sel;
 			fbcon_printf_ln(
 				menu_options[sel].color,

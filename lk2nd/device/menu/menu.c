@@ -7,6 +7,7 @@
 #include <dev/fbcon.h>
 #include <display_menu.h>
 #include <kernel/thread.h>
+#include <platform/timer.h>
 #include <platform.h>
 #include <stdlib.h>
 #include <string.h>
@@ -154,7 +155,26 @@ static void opt_continue(void)   {
         	(fbcon_get_width() - (int)strlen(s) * 6 * scale) / 2 + i * 6 * scale,
         	(fbcon_get_height() - 12 * scale) / 2);
 	fbcon_flush();
-	const char *s2 = "alpha :P";
+	const char *s2;
+	static const char *random_boot_messages[] = {
+		"the bluetooth device is ready to pair",
+		"alpha :P",
+		"this is totally not lk trust me",
+		"time to enter fastboot all over again",
+		"undefined",
+		"oneshot",
+		"totally not a dirty flash i swear",
+		"i hope this boots",
+		"i hope this doesnt boot",
+		"powered by android",
+		"waiting for something to explode",
+		"...",
+		"i have nothing to say",
+		"asdasdasdasdasdasdasdasd",
+		"always on display more like fire on display",
+		"todo: probably make this more interesting",
+	};
+	s2 = random_boot_messages[(int)current_time() % (sizeof(random_boot_messages) / 16)];
 	int scale2 = 3;
 	for (int i = 0; s2[i]; ++i)
     	fbcon_putc_factor_xy(s2[i], FBCON_COMMON_MSG, scale2,
@@ -334,6 +354,18 @@ void display_fastboot_menu(void)
 	}
 }
 
+static unsigned int rand(unsigned int *state)
+{
+	unsigned int x = *state;
+
+	x ^= x << 13;
+	x ^= x >> 17;
+	x ^= x << 5;
+
+	*state = x;
+	return x;
+}
+
 void display_default_image_on_screen(void);
 void display_default_image_on_screen(void)
 {
@@ -359,7 +391,26 @@ void display_default_image_on_screen(void)
     	fbcon_putc_factor_xy(s[i], FBCON_COMMON_MSG, scale,
         	(fbcon_get_width() - (int)strlen(s) * 6 * scale) / 2 + i * 6 * scale,
         	(fbcon_get_height() - 12 * scale) / 2);
-	const char *s2 = "alpha :P";
+	const char *s2;
+	static const char *random_boot_messages[] = {
+		"the bluetooth device is ready to pair",
+		"alpha :P",
+		"this is totally not lk trust me",
+		"time to enter fastboot all over again",
+		"undefined",
+		"oneshot",
+		"totally not a dirty flash i swear",
+		"i hope this boots",
+		"i hope this doesnt boot",
+		"powered by android",
+		"waiting for something to explode",
+		"...",
+		"i have nothing to say",
+		"asdasdasdasdasdasdasdasd",
+		"always on display more like fire on display",
+		"todo: probably make this more interesting",
+	};
+	s2 = random_boot_messages[(int)current_time() % (sizeof(random_boot_messages) / 16)];
 	int scale2 = 3;
 	for (int i = 0; s2[i]; ++i)
     	fbcon_putc_factor_xy(s2[i], FBCON_COMMON_MSG, scale2,

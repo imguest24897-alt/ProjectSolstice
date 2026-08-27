@@ -47,4 +47,4 @@ jobs:
           name: ${{ inputs.project }}-${{ inputs.platform }}
           path: ${{ inputs.artifacts }}
     env:
-      LKLE_CFLAGS: -Werror
+      LKLE_CFLAGS: -Werror -Wmaybe-uninitialized

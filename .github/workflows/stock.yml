@@ -49,4 +49,4 @@ jobs:
              TARGET_USE_SYSTEM_AS_ROOT_IMAGE=1 ENABLE_KASLRSEED=1 ENABLE_BOOTDEVICE_MOUNT=1
         if: contains(fromJSON('["msm8909", "msm8952", "msm8953", "msm8996"]'), inputs.platform)
     env:
-      LKLE_CFLAGS: -Werror
+      LKLE_CFLAGS: -Werror -Wmaybe-uninitialized

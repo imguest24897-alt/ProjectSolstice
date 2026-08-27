@@ -8,4 +8,5 @@ This thing is being tested only on a Samsung Galaxy J5 2016 (SM-J510H), so some 
 
 ## Known issues :P
 ### Samsung Galaxy J5 2016 (SM-J510H)
-1. Sometimes continuing the boot process causes weird flickering on the screen and then a reboot??? IDK what's causing that LMFAO
+1. Sometimes continuing the boot process causes weird flickering on the screen and then a reboot??? IDK what's causing that LMFAO<br>
+NOTE: This only happened for me once, and I couldn't reproduce it again. I don't know how is that even possible! This happened to me hours ago ever since I'm writing this and I can't reproduce it?? HOW. GENUINELY, HOW.

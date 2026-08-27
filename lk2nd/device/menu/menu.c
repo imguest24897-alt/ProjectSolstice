@@ -384,7 +384,7 @@ void display_default_image_on_screen(void)
 	fbcon_clear();
 
 	//for (int i=0; "ALPHA BUILD!"[i]; ++i) fbcon_putc_factor_xy("ALPHA BUILD!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 0);
-	
+
 	const char *s = "Project Solstice";
 	int scale = 6;
 	for (int i = 0; s[i]; ++i)

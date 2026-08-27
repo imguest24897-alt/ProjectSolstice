@@ -199,20 +199,20 @@ static void opt_recovery(void)
 static void opt_bootloader(void) { reboot_device(FASTBOOT_MODE); }
 static void opt_edl(void)        { reboot_device(EMERGENCY_DLOAD); }
 static void opt_shutdown(void)   { shutdown_device(); }
-static void opt_download(void)     { for (int i=0; "Rebooting into download mode isn't implemented yet!"[i]; ++i) fbcon_putc_factor_xy("Rebooting into download mode isn't implemented yet!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 24); }
+static void opt_download(void)   { for (int i=0; "Rebooting into download mode isn't implemented yet!"[i]; ++i) fbcon_putc_factor_xy("Rebooting into download mode isn't implemented yet!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 24); }
 
 static struct {
 	char *name;
 	unsigned color;
 	void (*action)(void);
 } menu_options[] = {
-	{ "  REBOOT  ", GREEN,  opt_reboot     },
-	{ " CONTINUE ", GREEN,  opt_continue   },
-	{ " RECOVERY ", ORANGE,  opt_recovery   },
-	{ " DOWNLOAD ", ORANGE, opt_download   },
-	{ " FASTBOOT ", RED,    opt_bootloader },
-	{ "    EDL   ", RED,    opt_edl        },
-	{ " POWEROFF ", RED,    opt_shutdown   },
+	{ "REBOOT"  , GREEN , opt_reboot     },
+	{ "CONTINUE", GREEN , opt_continue   },
+	{ "RECOVERY", ORANGE, opt_recovery   },
+	{ "DOWNLOAD", ORANGE, opt_download   },
+	{ "FASTBOOT", RED   , opt_bootloader },
+	{ "EDL"     , RED   , opt_edl        },
+	{ "POWEROFF", RED   , opt_shutdown   },
 };
 
 void display_fastboot_menu(void)
@@ -233,38 +233,39 @@ void display_fastboot_menu(void)
 	old_scale = scale_factor;
 	incr = FONT_HEIGHT * scale_factor;
 
-	y = incr * 2;
+	y = incr;
 
 	fbcon_clear();
 
-	for (int i=0; "FASTBOOT MODE"[i]; ++i) fbcon_putc_factor_xy("FASTBOOT MODE"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 0);
+	//for (int i=0; "FASTBOOT MODE"[i]; ++i) fbcon_putc_factor_xy("FASTBOOT MODE"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 0);
 
 	/*
 	 * Draw the static part of the menu
 	 */
 
-	scale_factor += 3;
+	scale_factor += 1;
 	incr = FONT_HEIGHT * scale_factor;
-	fbcon_puts_ln(WHITE, y, incr * 3, true, "Project Solstice");
+	fbcon_puts_ln(WHITE, y, incr, false, " Project Solstice (ALPHA!)");
+	scale_factor += 1; // idk what am i doing
+	scale_factor -= 2;
+	y += 10;
+	fbcon_puts_ln(RED   , y, incr, false, "  FASTBOOT MODE");
+	fbcon_printf_ln(SILVER, y, incr, false, "  %s", LK2ND_VERSION);
+	if (lk2nd_dev.model)
+		fbcon_printf_ln(SILVER, y, incr, false, "  %s", lk2nd_dev.model);
+	else
+		fbcon_printf_ln(SILVER, y, incr, false, "  unknown device (FIXME!)");
+	scale_factor += 2;
+	y -= (incr - 24);
+	fbcon_puts_ln(WHITE, y, incr, false, "_______________________________________________");
+	fbcon_puts_ln(WHITE, y, incr, false, "");
 
 	scale_factor = old_scale;
 	incr = FONT_HEIGHT * scale_factor;
-	fbcon_puts_ln(RED, y, incr, true, "ALPHA BUILD!");
-
-	//original code: fbcon_puts_ln(SILVER, y, incr, true, "2026.08.23-alpha");
-	fbcon_puts_ln(SILVER, y, incr, true, LK2ND_VERSION);
-	if (lk2nd_dev.model)
-		fbcon_puts_ln(SILVER, y, incr, true, lk2nd_dev.model);
-	else
-		fbcon_puts_ln(SILVER, y, incr, true, "unknown (FIXME!)");
-	y += incr;
-
-	fbcon_puts_ln(RED, y, incr, true, "FASTBOOT MODE");
-	y += incr;
 
 	/* Skip lines for the menu */
 	y_menu = y;
-	y += incr * (ARRAY_SIZE(menu_options) + 1);
+	y += incr * ((ARRAY_SIZE(menu_options) / 2 + 0.5) + 1);
 
 	if (lk2nd_dev.single_key) {
 		fbcon_puts_ln(SILVER, y, incr, true, "Short press to navigate.");
@@ -311,44 +312,45 @@ void display_fastboot_menu(void)
 	 * Loop to render the menu elements
 	 */
 
-	scale_factor = old_scale;
+	scale_factor = 4;
 	incr = FONT_HEIGHT * scale_factor;
 	while (true) {
 		y = y_menu;
-		fbcon_clear_msg(y / FONT_HEIGHT, (y / FONT_HEIGHT + ARRAY_SIZE(menu_options) * scale_factor));
-		for (i = 0; i < ARRAY_SIZE(menu_options); ++i) {
-			fbcon_printf_ln(
-				i == sel ? menu_options[i].color : WHITE,
-				y, incr, true, "%c %s %c",
-				i == sel ? '<' : ' ',
-				menu_options[i].name,
-				i == sel ? '>' : ' '
-			);
-		}
+		fbcon_clear_msg(y / FONT_HEIGHT, (y / FONT_HEIGHT + ARRAY_SIZE(menu_options) * (scale_factor / 2)));
+		fbcon_printf_ln(
+			i == sel ? menu_options[sel].color : WHITE,
+			y, incr, false, " %c %s %c",
+			i == sel ? '>' : ' ',
+			menu_options[i].name,
+			i == sel ? ' ' : ' '
+		);
+		fbcon_puts_ln(WHITE, y, incr, false, "_______________________________________________");
+		fbcon_puts_ln(WHITE, y, incr, false, "");
 
 		fbcon_flush();
 
 		switch (wait_key()) {
 		case KEY_POWER:
 		case KEY_HOME:
-			y = y_menu + incr * sel;
-			fbcon_printf_ln(
-				menu_options[sel].color,
-				y, incr, true, "<< %s >>",
-				menu_options[sel].name
-			);
 			menu_options[sel].action();
 			break;
 		case KEY_VOLUMEUP:
-			if (sel == 0)
-				sel = ARRAY_SIZE(menu_options) - 1;
-			else
+			if (sel != 0) {
+				i--;
 				sel--;
+			} else {
+				i = 6;
+				sel = 6;
+			}
 			break;
 		case KEY_VOLUMEDOWN:
-			sel++;
-			if (sel >= ARRAY_SIZE(menu_options))
+			if (sel != 6) {
+				i++;
+				sel++;
+			} else {
+				i = 0;
 				sel = 0;
+			}
 			break;
 		}
 	}

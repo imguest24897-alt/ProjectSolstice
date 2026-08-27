@@ -34,7 +34,7 @@ static int samsung_muic_reset(const void *dtb, int node)
 	if (status)
 		return status;
 
-	status = gpio_i2c_write_reg_bytes(&i2c, addr, MUIC_RESET_REG, &val, 1);
+	status = gpio_i2c_write_reg_bytes(&i2c, addr, MUIC_RESET_REG, &val, sizeof(val));
 	if (status) {
 		dprintf(CRITICAL, "muic-reset: I2C write error: %d\n", status);
 		return status;

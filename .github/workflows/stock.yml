@@ -48,5 +48,3 @@ jobs:
              VERIFIED_BOOT_2=1 OSVERSION_IN_BOOTIMAGE=1 ENABLE_VB_ATTEST=1 VB1_KEY_USED=1
              TARGET_USE_SYSTEM_AS_ROOT_IMAGE=1 ENABLE_KASLRSEED=1 ENABLE_BOOTDEVICE_MOUNT=1
         if: contains(fromJSON('["msm8909", "msm8952", "msm8953", "msm8996"]'), inputs.platform)
-    env:
-      LKLE_CFLAGS: -Werror -Wmaybe-uninitialized

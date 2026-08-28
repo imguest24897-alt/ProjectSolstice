@@ -312,10 +312,9 @@ void display_fastboot_menu(void)
 		fbcon_clear_msg(y / FONT_HEIGHT, (y / FONT_HEIGHT + ARRAY_SIZE(menu_options) * (scale_factor / 3)));
 		fbcon_printf_ln(
 			i == sel ? menu_options[sel].color : WHITE,
-			y, incr, false, " %c %s %c",
+			y, incr, false, " %c %s",
 			i == sel ? '>' : ' ',
-			menu_options[i].name,
-			i == sel ? ' ' : ' '
+			menu_options[i].name
 		);
 		fbcon_puts_ln(WHITE, y, incr, false, "_______________________________________________");
 		fbcon_puts_ln(WHITE, y, incr, false, "");

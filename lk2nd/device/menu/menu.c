@@ -258,17 +258,17 @@ void display_fastboot_menu(void)
 
 	/* Skip lines for the menu */
 	y_menu = y;
-	y += incr * ((ARRAY_SIZE(menu_options) / 2 + 0.5) + 1);
+	y += incr * ((ARRAY_SIZE(menu_options) / 3) + 1);
 
 	if (lk2nd_dev.single_key) {
-		fbcon_puts_ln(SILVER, y, incr, true, "Short press to navigate.");
-		fbcon_puts_ln(SILVER, y, incr, true, "Long press to select.");
+		fbcon_puts_ln(SILVER, y, incr, false, " Short press to navigate.");
+		fbcon_puts_ln(SILVER, y, incr, false, " Long press to select.");
 	} else {
-		fbcon_printf_ln(SILVER, y, incr, true, "You can use the %s to ",
+		fbcon_printf_ln(SILVER, y, incr, false, " You can use the %s to ",
 				(lk2nd_dev.menu_keys.navigate ? lk2nd_dev.menu_keys.navigate : "volume buttons"));
-		fbcon_printf_ln(SILVER, y, incr, true, "navigate,");
-		fbcon_printf_ln(SILVER, y, incr, true, "or %s to select.",
+		fbcon_printf_ln(SILVER, y, incr, false, " navigate, or %s to",
 				(lk2nd_dev.menu_keys.select ? lk2nd_dev.menu_keys.select : "the power/home key"));
+		fbcon_printf_ln(SILVER, y, incr, false, " select.");
 	}
 
 	/*
@@ -309,7 +309,7 @@ void display_fastboot_menu(void)
 	incr = FONT_HEIGHT * scale_factor;
 	while (true) {
 		y = y_menu;
-		fbcon_clear_msg(y / FONT_HEIGHT, (y / FONT_HEIGHT + ARRAY_SIZE(menu_options) * (scale_factor / 2)));
+		fbcon_clear_msg(y / FONT_HEIGHT, (y / FONT_HEIGHT + ARRAY_SIZE(menu_options) * (scale_factor / 3)));
 		fbcon_printf_ln(
 			i == sel ? menu_options[sel].color : WHITE,
 			y, incr, false, " %c %s %c",

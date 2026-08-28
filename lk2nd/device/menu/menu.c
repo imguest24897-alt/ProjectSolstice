@@ -135,7 +135,6 @@ static uint16_t wait_key(void)
 	} while(0)
 
 static void opt_continue(void)   {
-	//for (int i=0; "DEBUG: Continuing boot"[i]; ++i) fbcon_putc_factor_xy("DEBUG: Continuing boot"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
 	struct fbcon_config *fb = fbcon_display();
 	int y, incr;
 	scale_factor = max(1U, min(fb->width, fb->height) / (FONT_WIDTH * MIN_LINE));
@@ -145,8 +144,6 @@ static void opt_continue(void)   {
 	fbcon_clear_msg(y / FONT_HEIGHT, y / FONT_HEIGHT + 3 * scale_factor);
 
 	fbcon_clear();
-
-	//for (int i=0; "ALPHA BUILD!"[i]; ++i) fbcon_putc_factor_xy("ALPHA BUILD!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 0);
 
 	const char *s = "Project Solstice";
 	int scale = 7;
@@ -184,7 +181,6 @@ static void opt_continue(void)   {
 
 	fbcon_puts_ln(WHITE, y, incr, true, "Powered by");
 	fbcon_puts_ln(SILVER, y, incr, true, "lk2nd");
-	//for (int i=0; "DEBUG: Continuing boot"[i]; ++i) fbcon_putc_factor_xy("DEBUG: Continuing boot"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
 	fbcon_flush();
 	cmd_continue(NULL, NULL, 0);
 }
@@ -199,7 +195,7 @@ static void opt_recovery(void)
 static void opt_bootloader(void) { reboot_device(FASTBOOT_MODE); }
 static void opt_edl(void)        { reboot_device(EMERGENCY_DLOAD); }
 static void opt_shutdown(void)   { shutdown_device(); }
-static void opt_download(void)   { for (int i=0; "Rebooting into download mode isn't implemented yet!"[i]; ++i) fbcon_putc_factor_xy("Rebooting into download mode isn't implemented yet!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 24); }
+static void opt_download(void)   { for (int i=0; "Rebooting into download mode isn't implemented yet!"[i]; ++i) fbcon_putc_factor_xy("Rebooting into download mode isn't implemented yet!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 0); }
 
 static struct {
 	char *name;
@@ -217,7 +213,6 @@ static struct {
 
 void display_fastboot_menu(void)
 {
-	for (int i=0; "ALPHA BUILD!"[i]; ++i) fbcon_putc_factor_xy("ALPHA BUILD!"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 0);
 	struct fbcon_config *fb = fbcon_display();
 	int y, y_menu, old_scale, incr;
 	unsigned int sel = 0, i;
@@ -236,8 +231,6 @@ void display_fastboot_menu(void)
 	y = incr;
 
 	fbcon_clear();
-
-	//for (int i=0; "FASTBOOT MODE"[i]; ++i) fbcon_putc_factor_xy("FASTBOOT MODE"[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 0);
 
 	/*
 	 * Draw the static part of the menu
@@ -385,8 +378,6 @@ void display_default_image_on_screen(void)
 
 	fbcon_clear();
 
-	//for (int i=0; "ALPHA BUILD!"[i]; ++i) fbcon_putc_factor_xy("ALPHA BUILD!"[i], FBCON_RED_MSG, 2, i * 6 * 2, 0);
-
 	const char *s = "Project Solstice";
 	int scale = 6;
 	for (int i = 0; s[i]; ++i)
@@ -422,6 +413,5 @@ void display_default_image_on_screen(void)
 
 	fbcon_puts_ln(SILVER, y, incr, true, "Powered by");
 	fbcon_puts_ln(WHITE, y, incr, true, "lk2nd");
-	//for (int i=0; "Finished doing stuff, trying to boot..."[i]; ++i) fbcon_putc_factor_xy("Finshed doing stuff, trying to boot..."[i], FBCON_COMMON_MSG, 2, i * 6 * 2, 24);
 	fbcon_flush();
 }

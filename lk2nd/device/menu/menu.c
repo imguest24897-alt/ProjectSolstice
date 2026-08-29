@@ -170,8 +170,19 @@ static void opt_continue(void)   {
 		"asdasdasdasdasdasdasdasd",
 		"always on display more like fire on display",
 		"todo: probably make this more interesting",
+		"this totally wont explode",
+		"running on a toaster",
+		"mediatek jumpscare",
+		"A N D R O I D",
+		"welcome to lk",
+		"idk",
+		"android in the bios",
+		"\"JARONA\"  - flowery",
+		"proceed",
+		"geometry dash",
+		"a totally awesome second stage bootloader",
 	};
-	s2 = random_boot_messages[(int)current_time() % (sizeof(random_boot_messages) / 16)];
+	s2 = random_boot_messages[(int)current_time() % (sizeof(random_boot_messages) / 27)];
 	int scale2 = 3;
 	for (int i = 0; s2[i]; ++i)
     	fbcon_putc_factor_xy(s2[i], FBCON_COMMON_MSG, scale2,
@@ -401,8 +412,19 @@ void display_default_image_on_screen(void)
 		"asdasdasdasdasdasdasdasd",
 		"always on display more like fire on display",
 		"todo: probably make this more interesting",
+		"this totally wont explode",
+		"running on a toaster",
+		"mediatek jumpscare",
+		"A N D R O I D",
+		"welcome to lk",
+		"idk",
+		"android in the bios",
+		"\"JARONA\"  - flowery",
+		"proceed",
+		"geometry dash",
+		"a totally awesome second stage bootloader",
 	};
-	s2 = random_boot_messages[(int)current_time() % (sizeof(random_boot_messages) / 16)];
+	s2 = random_boot_messages[(int)current_time() % (sizeof(random_boot_messages) / 27)];
 	int scale2 = 3;
 	for (int i = 0; s2[i]; ++i)
     	fbcon_putc_factor_xy(s2[i], FBCON_COMMON_MSG, scale2,

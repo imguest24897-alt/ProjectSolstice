@@ -1,4 +1,0 @@
-{
-  "enable_language_server": true,
-  "language_servers": ["discord_presence"]
-}

@@ -17,3 +17,7 @@ compile_commands.json
 
 # the file i use for lk2nd logs
 debug.lol
+
+# Zed Editor
+.zed/
+.zedignore

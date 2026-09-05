@@ -126,52 +126,11 @@ static void cmd_oem_read_partition(const char *arg, void *data, unsigned sz)
 	if (sz)
 		fastboot_stage(data, sz);
 }
-/*
-static void cmd_oem_unlock(const char *arg, void *data, unsigned sz) {
-	(void)data; (void)sz;
-	fastboot_info("Pretending like the bootloader got unlocked");
-	fastboot_okay("");
-}
-static void cmd_oem_lock(const char *arg, void *data, unsigned sz) {
-	(void)data; (void)sz;
-	fastboot_info("Pretending like the bootloader got locked");
-	fastboot_okay("");
-}
-static void cmd_oem_carrier(const char *arg, void *data, unsigned sz) {
-	(void)data; (void)sz;
-	if (lk2nd_dev.carrier != NULL || lk2nd_dev.carrier) {
-		fastboot_okay(lk2nd_dev.carrier);
-	} else {
-		fastboot_fail("I don't know the carrier!");
-	}
-}
-static void cmd_oem_clearscreen(const char *arg, void *data, unsigned sz) {
-	(void)data; (void)sz;
-	fbcon_clear();
-	fastboot_okay("");
-}
-
-static void cmd_oem_blcmdline(const char *arg, void *data, unsigned sz)
-{
-	(void)data; (void)sz;
-
-	fastboot_info(lk2nd_dev.cmdline);
-	fastboot_okay("");
-}
-*/
 
 static void lk2nd_fastboot_register_fetch(void)
 {
 	fastboot_publish("max-fetch-size", max_download_size);
 	fastboot_register("oem read-partition", cmd_oem_read_partition);
 	fastboot_register("fetch:", cmd_fetch);
-	/*
-	fastboot_register("oem unlock", cmd_oem_unlock);
-	fastboot_register("oem lock", cmd_oem_lock);
-	fastboot_register("flashing unlock", cmd_oem_unlock);
-	fastboot_register("flashing lock", cmd_oem_lock);
-	fastboot_register("oem carrier", cmd_oem_carrier);
-	fastboot_register("oem clearscreen", cmd_oem_clearscreen);
-	fastboot_register("oem blcmdline", cmd_oem_blcmdline);*/
 }
 FASTBOOT_INIT(lk2nd_fastboot_register_fetch);

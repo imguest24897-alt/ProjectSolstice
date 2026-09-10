@@ -33,6 +33,7 @@
 - Motorola Moto E (2015) - surnia
 - Motorola Moto G (2015) - osprey
 - Motorola Moto G4 Play - harpia
+- OPPO A37 - a37f (quirky - see comment in `lk2nd/device/dts/msm8916/msm8916-mtp.dts`)
 - Panasonic ELUGA U2
 - Samsung Galaxy A3 (2015) - SM-A300F, SM-A300FU, SM-A300YZ
 - Samsung Galaxy A5 (Duos) (2015) - SM-A5000, SM-A500F, SM-A500FU, SM-A500H, SM-A500YZ
@@ -56,6 +57,7 @@
 - Samsung Galaxy Tab A 8.0 (2015) - SM-T350, SM-T355, SM-T355Y, SM-T357W
 - Samsung Galaxy Tab A 9.7 (2015) - SM-T550, SM-T555
 - Samsung Galaxy Tab E 9.6 WiFi (2015) - SM-T560NU
+- Vivo V3-Max /Vivo V3-Max A (2016) - pd1523
 - Vivo Y13L / Y613f / Y913 - PD1304CL, PD1304CF, PD1304CV (use lk1st quirky - see comment in `lk2nd/device/dts/msm8916/msm8916-vivo-cdp-1.dts`)
 - Vivo Y23L / Y623 / Y923 - PD1419L, PD1419F, PD1419V (use lk1st quirky - see comment in `lk2nd/device/dts/msm8916/msm8916-vivo-cdp-1.dts`)
 - Vivo Y21L
@@ -95,7 +97,6 @@
 
 - Alcatel Idol 4 (6055*)
 - Asus Zenfone 4 Max (x00id) (MSM8937)
-- Asus Zenfone 4 Max Pro (x00i)
 - BQ X5 Plus (Longcheer L9360)
 - Cat S22 Flip (S22FLIP)
 - Fossil Gen 6 (hoki) (requires flashing [minimal DTBO](#minimal-dtb-overlay))
@@ -236,6 +237,8 @@
 - Asus Nexus 7 (flo)
 - Samsung Galaxy Ace 3 LTE (GT-S7275R) (display refresh doesn't work)
 - Samsung Galaxy Express (SGH-I437)
+- Samsung Galaxy S III Mini (SM-G730A) (AT&T variant)
+- Samsung Galaxy S4 (SGH-M919)
 - Samsung Galaxy S4 Mini (GT-I9195)
 - Sony Xperia SP (huashan) (quirky - see comment in `lk2nd/device/dts/msm8960/bundle.dts`)
 

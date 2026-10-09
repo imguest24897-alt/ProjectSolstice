@@ -23,6 +23,15 @@ jobs:
         build-*/lk.bin
         build-*/lk2nd.img
 
+  lk2nd-alt-menu:
+    needs: lk2nd
+    uses: ./.github/workflows/solstice_altmenu-matrix.yml
+    with:
+      project: lk2nd
+      artifacts: |
+        build-*/lk.bin
+        build-*/lk2nd.img
+
   lk1st:
     needs: lk2nd
     uses: ./.github/workflows/lk2nd-matrix.yml

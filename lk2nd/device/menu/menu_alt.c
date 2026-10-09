@@ -349,12 +349,12 @@ void display_fastboot_menu(void)
 		y -= 24; // someone please kill me why am i doing this
 		fbcon_printf_ln(FBCON_SUBTITLE_MSG, y, incr, false, "Project Solstice - %s", LK2ND_VERSION);
 		y-=24;
-		fbcon_printf_ln(FBCON_COMMON_MSG, y, incr, false, "PRODUCT_NAME - this is a placeholder cuz smth weird happened");
+		fbcon_printf_ln(FBCON_COMMON_MSG, y, incr, false, "PRODUCT_NAME - placeholder");
 		y-=24;
 		if (lk2nd_dev.model)fbcon_printf_ln(FBCON_COMMON_MSG, y, incr, false, "MODEL - %s", lk2nd_dev.model);
 		else fbcon_printf_ln(FBCON_RED_MSG, y, incr, false, "MODEL - Unknown (FIXME!)");
 		y-=24;
-		fbcon_printf_ln(FBCON_COMMON_MSG, y, incr, false, "VARIANT - this is a placeholder cuz smth weird happened");
+		fbcon_printf_ln(FBCON_COMMON_MSG, y, incr, false, "VARIANT - placeholder");
 		y-=24;
 		if (lk2nd_dev.bootloader) fbcon_printf_ln(FBCON_COMMON_MSG, y, incr, false, "BOOTLOADER - %s", lk2nd_dev.bootloader);
 		else fbcon_printf_ln(FBCON_YELLOW_MSG, y, incr, false, "BOOTLOADER - ???");

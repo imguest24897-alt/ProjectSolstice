@@ -384,9 +384,9 @@ void display_default_image_on_screen(void)
 	incr = FONT_HEIGHT * scale_factor;
 	y = fb->height - 3 * incr;
 
-	if (strstr(lk2nd_dev.cmdline, "androidboot.mode=charger") != NULL) {
+	/*if (strstr(lk2nd_dev.cmdline, "androidboot.mode=charger") != NULL) {
 		return;
-	}
+		}*/
 
 	fbcon_clear_msg(y / FONT_HEIGHT, y / FONT_HEIGHT + 3 * scale_factor);
 

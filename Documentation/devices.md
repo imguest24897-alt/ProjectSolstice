@@ -79,6 +79,7 @@
 
 - Acer Liquid Z330 (T01)
 - CAT B35
+- Doro 8035
 - FarEasTone Smart 506 (quirky - see comment in `lk2nd/device/dts/msm8909/msm8909-1gb-qrd-skuc.dts`)
 - Haier G151 / Andromax A (quirky - see comment in `lk2nd/device/dts/msm8909/msm8909-1gb-qrd-skuc.dts`)
 - Huawei Honor 4A - scale
@@ -205,6 +206,7 @@
 - Coolpad 8730L - 8730l
 - HTC One Mini 2 - memul (quirky - see comment in `lk2nd/device/dts/msm8226/msm8926-htc-memul.dts`)
 - Huawei Ascend G6 4G - G6-L11 (quirky - see comment in `lk2nd/device/dts/msm8226/msm8926-huawei-g6-l11-vb.dts`)
+- Huawei Ascend G6 - G6-L22 (quirky - see comment in `lk2nd/device/dts/msm8226/msm8926-huawei-g6-l22.dts`)
 - Huawei Watch - sturgeon
 - LG Fx0 - madai
 - LG G Watch R - lenok <!--(use `lk2nd-appended-dtb.img`)-->
